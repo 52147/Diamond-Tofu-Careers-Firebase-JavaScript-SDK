@@ -1,9 +1,11 @@
 import React from 'react'
-
+import { Home } from '../home/homes/Home'
+import {PosType} from '../home/PosType'
 export const HomePages = () => {
   return (
     <>
-     <h1>HomePages</h1> 
+    <Home/>
+    <PosType/>
     </>
   )
 }

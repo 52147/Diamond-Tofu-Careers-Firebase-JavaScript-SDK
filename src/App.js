@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import { Header } from './components/Header';
+import { Header } from './components/home/header/Header';
 import { HomePages } from './components/pageContent/HomePages';
+import { CareerPages } from './components/pageContent/CareerPages';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,8 +18,10 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' exact element={<HomePages/>}/>
+          <Route path='/career' exact element={<CareerPages />} />
         </Routes>
     </Router>
+
     </>
   );
 }
