@@ -3,18 +3,18 @@ import React from 'react'
 export const PosType = () => {
   const data = [{
     id: "1",
-    heading: "123456",
-    summary: "123456",
+    heading: "Software Engineer",
+    summary: "An IT professional who designs, develops and maintains computer software at a company. ",
     cover: "image.png" // image for card
   }, {
     id: "2",
-    heading: "123456",
-    summary: "123456",
+    heading: "Data Scientist",
+    summary:"An analytics professional who is responsible for collecting, analyzing and interpreting data to help drive decision-making in an organization.",
     cover: "image.png"
   }, {
     id: "3",
-    heading: "123456",
-    summary: "123456",
+    heading: "Project Manager",
+    summary: "Accountable for planning and allocating resources, preparing budgets, monitoring progress, and keeping stakeholders informed throughout the project lifecycle.",
     cover: "image.png"
   }]
 
