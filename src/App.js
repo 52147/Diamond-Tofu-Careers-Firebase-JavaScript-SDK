@@ -1,8 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import { Header } from './components/home/header/Header';
+import { Header } from './components/Header';
 import { HomePages } from './components/pageContent/HomePages';
 import { CareerPages } from './components/pageContent/CareerPages';
+import { Footer } from './components/Footer';
+
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +22,7 @@ function App() {
           <Route path='/' exact element={<HomePages/>}/>
           <Route path='/career' exact element={<CareerPages />} />
         </Routes>
+        <Footer/>
     </Router>
 
     </>

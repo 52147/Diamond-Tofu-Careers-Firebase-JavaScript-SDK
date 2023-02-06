@@ -4,7 +4,7 @@ export const PosType = () => {
   const data = [{
     id: "1",
     heading: "Software Engineer",
-    summary: "An IT professional who designs, develops and maintains computer software at a company. ",
+    summary: "An IT professional who designs, develops and maintains computer software at a company. They use their creativity and technical skills.",
     cover: "image.png" // image for card
   }, {
     id: "2",
