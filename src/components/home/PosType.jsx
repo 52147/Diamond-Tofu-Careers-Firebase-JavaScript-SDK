@@ -1,42 +1,43 @@
 import React from 'react'
-import { Home } from './homes/Home'
+
 export const PosType = () => {
-    const data = [{
-                id: "1",
-                heading: "123456",
-                summary: "123456",
-                cover: ""
-            },{
-                id: "2",
-                heading: "123456",
-                summary: "123456",
-                cover: ""
-            },{
-                id: "3",
-                heading: "123456",
-                summary: "123456",
-                cover: ""
-            }]
+  const data = [{
+    id: "1",
+    heading: "123456",
+    summary: "123456",
+    cover: "image.png" // image for card
+  }, {
+    id: "2",
+    heading: "123456",
+    summary: "123456",
+    cover: "image.png"
+  }, {
+    id: "3",
+    heading: "123456",
+    summary: "123456",
+    cover: "image.png"
+  }]
+
+  // 不要用沒有用div， className 直接寫在 tag 上
   return (
-    <>
-    <section className = "pos">
-        <div className = "grid">
-            {data.map((value) => {
-                return (
-                <div className ="">
-                    <div className ="img">
-                        <img src={value.cover} alt="" />
-                    </div>
-                    <div className = "para">
-                        <h2>{value.heading}</h2>
-                        <p>{value.summary}</p>
-                    </div>
+  <>
+    <section className = "container">
+      <div className = "card-group">
+        {
+          data.map((value) => {
+            return (
+              <div className ="card">
+                <img src={value.cover} alt="" />
+                <div className = "para">
+                  <h2>{value.heading}</h2>
+                  <p>{value.summary}</p>
                 </div>
-                )
-            })}
-        </div>
+              </div>
+            )
+          })
+        }
+      </div>
     </section>
-    </>
-    
+  </>
   )
 }
