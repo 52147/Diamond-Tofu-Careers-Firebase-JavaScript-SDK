@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export const PosType = () => {
+  const [style, setStyle] = useState({display: "none"});
+
   const data = [{
     id: "1",
     heading: "Software Engineer",
-    summary: "An IT professional who designs, develops and maintains computer software at a company. They use their creativity and technical skills.",
+    summary: "An IT professional who designs, develops and maintains computer software at a company. They use their creativity and technical skills to provide pratical solutions.",
     cover: "image.png" // image for card
   }, {
     id: "2",
@@ -19,6 +21,7 @@ export const PosType = () => {
   }]
 
   // 不要用沒有用div， className 直接寫在 tag 上
+  // 每一個button都是inline block
   return (
   <>
     <section className = "container">
@@ -26,12 +29,20 @@ export const PosType = () => {
         {
           data.map((value) => {
             return (
-              <div className ="card">
-                <img src={value.cover} alt="" />
+              <div className ="card"
+              onMouseEnter = {e => {setStyle({display: "inline-block"});}}
+                  onMouseLeave = {e => {setStyle({display: "none"});}}>
+                <img src={value.cover} alt=""/>
+
+                
                 <div className = "para">
                   <h2>{value.heading}</h2>
                   <p>{value.summary}</p>
                 </div>
+                <div className = "btn-group">
+                  <button style={style}>Click</button>
+                  <button style={style}>Click</button>
+              </div>
               </div>
             )
           })

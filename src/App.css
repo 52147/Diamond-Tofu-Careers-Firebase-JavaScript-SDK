@@ -93,24 +93,31 @@ header .active{
 .card-group {
   display: flex;
   justify-content: center;
-  gap: 0 14px;  /*用gap 將 3 個flex box 分開*/
-  margin-top: 14px;
+  gap: 0 50px;  /*用gap 將 3 個flex box 分開*/
+  margin-top: 30px;
 }
 
 .card-group .card {
-  display: flex;
   flex-direction: column;
   background-color: blueviolet;
   box-shadow: 0 5px 20px 0 rgba(0 0 0 /6%);
   width: 100%;
-  height: 200%;
+  height: 50; /*固定高度*/
   padding: 20px 24px;
-  margin-bottom: 6px;
+  margin-bottom: 30px;
 }
 
 .card-group .card img {
   width: 100%;
   margin-bottom: 6px;
+}
+
+.btn-group{
+  text-align: center; /*設置父元素 text-align: cetner 讓 inline block置中*/
+}
+
+button {
+  margin-right: 3px; /*inline block 中間的間隔*/
 }
 
 /*--------------Position--------------*/
