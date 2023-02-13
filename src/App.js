@@ -1,26 +1,27 @@
 import './App.css';
-import { Header } from './components/Header';
-import { HomePages } from './components/pageContent/HomePages';
-import { CareerPages } from './components/pageContent/CareerPages';
-import { Footer } from './components/Footer';
+import { Header } from './components/header/Header';
+import { HomePage } from './components/pageContent/HomePage';
+import { CareerPage } from './components/pageContent/CareerPage';
+import { JobDesPage } from './components/pageContent/JobDesPage';
+
+import { Footer } from './components/footer/Footer';
 
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {
   return (
     <>
-
     <Router>
         <Header />
         <Routes>
-          <Route path='/' exact element={<HomePages/>}/>
-          <Route path='/career' exact element={<CareerPages />} />
+          <Route path='/' exact element={<HomePage/>}/>
+          <Route path='/career' exact element={<CareerPage />} />
+          <Route path='/jobdes' exact element={<JobDesPage />} />
         </Routes>
         <Footer/>
     </Router>

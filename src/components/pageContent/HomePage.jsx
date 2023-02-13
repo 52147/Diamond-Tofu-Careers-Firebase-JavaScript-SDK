@@ -1,7 +1,7 @@
 import React from 'react'
-import { Home } from '../home/homes/Home'
+import { Home } from '../home/Home'
 import {PosType} from '../home/PosType'
-export const HomePages = () => {
+export const HomePage = () => {
   return (
     <>
     <Home/>
