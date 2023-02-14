@@ -3,7 +3,7 @@ import { Header } from './components/header/Header';
 import { HomePage } from './components/pageContent/HomePage';
 import { CareerPage } from './components/pageContent/CareerPage';
 import { JobDesPage } from './components/pageContent/JobDesPage';
-
+import { FormPage } from './components/pageContent/FormPage';
 import { Footer } from './components/footer/Footer';
 
 
@@ -22,6 +22,7 @@ function App() {
           <Route path='/' exact element={<HomePage/>}/>
           <Route path='/career' exact element={<CareerPage />} />
           <Route path='/jobdes' exact element={<JobDesPage />} />
+          <Route path='/form' exact element={<FormPage />} />
         </Routes>
         <Footer/>
     </Router>

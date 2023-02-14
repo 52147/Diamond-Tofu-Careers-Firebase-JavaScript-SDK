@@ -121,10 +121,37 @@ button {
 }
 
 /*--------------Position--------------*/
-
+/*--------------Job Des--------------*/
+.jobdes{
+    width: 700px;
+    margin: 50px auto;
+    border: 5px solid #eee;
+}
+.des {
+  justify-content: center;
+  text-align: center;
+  border: 1px solid hsl(291, 85%, 40%);
+}
+/*--------------Job Des--------------*/
 
 /*--------------Footer--------------*/
 footer{
   background-color: blueviolet;
+  padding: 20px 0 20px 0;
+  color: #fff;
+}
+.icon{
+  margin-left: 20px;
+  padding: 20px ;
+  border: 1px solid #fff;
+}
+.box{
+  justify-content: center;
+  display: flex;
+  text-align: center;
+}
+.box h2{
+  text-align: center;
+  padding-bottom: 10px;
 }
 /*--------------Footer--------------*/
