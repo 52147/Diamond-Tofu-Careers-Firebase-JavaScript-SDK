@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Button } from "react-bootstrap";
 
 export const PosType = () => {
   const [style, setStyle] = useState({display: "none"});
@@ -25,11 +26,11 @@ export const PosType = () => {
   return (
   <>
     <section className = "container">
-      <div className = "card-group">
+      <div className = "row card-group">
         {
           data.map((value) => {
             return (
-              <div className ="card"
+              <div className ="col-4 card"
               onMouseEnter = {e => {setStyle({display: "inline-block"});}}
                   onMouseLeave = {e => {setStyle({display: "none"});}}>
                 <img src={value.cover} alt=""/>
