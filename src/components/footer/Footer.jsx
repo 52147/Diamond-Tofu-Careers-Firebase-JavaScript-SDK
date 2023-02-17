@@ -9,24 +9,38 @@ export const Footer = () => {
   return (
     <>
     <footer>
-    <div className='container grid1'>
-        <div className='box'>
-            <img src="DT logo.png" alt="" />
-            <div className = "">
-                <div className = "icon">
-                <h2>Get in Touch</h2>
-                <ul>
-                <li><FontAwesomeIcon icon={faLocation} />
-                <label htmlFor=""> MA, Cambridge, US</label></li>
-                 <li><FontAwesomeIcon icon={faLinkedinIn} />
-                <label htmlFor="">  diamond-tofu</label></li>
-                <li><FontAwesomeIcon icon={faEnvelope} />
-                <label htmlFor="">  support@gmail.com</label></li>
-                </ul>
-              </div>
-            </div>      
+      <div className = 'footer-block'>
+        <img src="DT logo.png" alt="" />
+        <div className = "">
+          <h2>Get in Touch</h2>
+          <ul>
+            <li>
+              <span className = "footer-list-icon">
+                <FontAwesomeIcon icon={faLocation} />
+              </span>
+              <label htmlFor="">
+                MA, Cambridge, US
+              </label>
+            </li>
+            <li>
+              <span className = "footer-list-icon">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </span>
+              <label htmlFor="">
+                diamond-tofu
+              </label>
+            </li>
+            <li>
+              <span className = "footer-list-icon">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </span>
+              <label htmlFor="">
+                support@gmail.com
+              </label>
+            </li>
+          </ul>
         </div>
-        </div>
+      </div>
     </footer>
     </>
   )

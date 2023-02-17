@@ -1,49 +1,52 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Button } from "react-bootstrap";
 
 export const PosType = () => {
-  const [style, setStyle] = useState({display: "none"});
-
   const data = [{
     id: "1",
     heading: "Software Engineer",
     summary: "An IT professional who designs, develops and maintains computer software at a company. They use their creativity and technical skills to provide pratical solutions.",
-    cover: "image.png" // image for card
+    cover: "software-engineer.png" // image for card
   }, {
     id: "2",
     heading: "Data Scientist",
     summary:"An analytics professional who is responsible for collecting, analyzing and interpreting data to help drive decision-making in an organization.",
-    cover: "image.png"
+    cover: "data-scientist.png"
   }, {
     id: "3",
     heading: "Project Manager",
     summary: "Accountable for planning and allocating resources, preparing budgets, monitoring progress, and keeping stakeholders informed throughout the project lifecycle.",
-    cover: "image.png"
+    cover: "pm.png"
   }]
 
   // 不要用沒有用div， className 直接寫在 tag 上
   // 每一個button都是inline block
   return (
   <>
-    <section className = "container">
+    <section className = "container card-block">
       <div className = "row card-group">
         {
           data.map((value) => {
             return (
-              <div className ="col-4 card"
-              onMouseEnter = {e => {setStyle({display: "inline-block"});}}
-                  onMouseLeave = {e => {setStyle({display: "none"});}}>
-                <img src={value.cover} alt=""/>
+              <div className ="col-12 col-lg-4 card">
+                <img
+                  className = "card-image"
+                  src={value.cover}
+                  alt=""
+                />
 
-                
-                <div className = "para">
-                  <h2>{value.heading}</h2>
-                  <p>{value.summary}</p>
+                <div className = "card-info">
+                  <h2 className = "title">
+                    {value.heading}
+                  </h2>
+                  <p className = "summary">
+                    {value.summary}
+                  </p>
                 </div>
-                <div className = "btn-group">
-                  <button style={style}>Click</button>
-                  <button style={style}>Click</button>
-              </div>
+                <div className = "btn-block">
+                  <Button>Full Time</Button>
+                  <Button>Intern</Button>
+                </div>
               </div>
             )
           })
