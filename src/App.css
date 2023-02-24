@@ -60,6 +60,7 @@ header .active{
 .nav {
   display: flex;
   align-items: center;
+  color: #ffffff;
 }
 .logo {
   width: 80px;
@@ -143,6 +144,9 @@ header .active{
   background-color: #b590ff;
   border: 0;
 }
+.btnpadding{
+  padding-bottom: 10px;
+}
 
 /*--------------Position--------------*/
 
@@ -156,6 +160,9 @@ header .active{
   justify-content: center;
   text-align: center;
   border: 1px solid #7F44F8;
+}
+.padding-top{
+  padding-top: 10px;
 }
 /*--------------Job Des--------------*/
 

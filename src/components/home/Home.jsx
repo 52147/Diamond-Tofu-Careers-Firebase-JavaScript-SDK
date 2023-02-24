@@ -5,7 +5,7 @@ export const Home = () => {
     <> 
     <section className = "home">
       <div className = "middle">
-        <img src="career.png" alt="" />
+        <img src="career-img.jpg" alt="" />
       </div>
       <div className = "middleText">
         <h1>Diamond Tofu</h1>
