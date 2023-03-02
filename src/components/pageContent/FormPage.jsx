@@ -1,9 +1,9 @@
 import React from 'react'
-import {Form} from "../form/Form"
+import {FormComponent} from "../form/FormComponent"
 export const FormPage = () => {
   return (
     <>
-    <Form/>
+    <FormComponent/>
     </>
   )
 }
