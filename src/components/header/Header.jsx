@@ -11,19 +11,19 @@ export const Header = () => {
           <div className="nav">
             <ul className="nav-links text-white">
               <li className="text-white">
-                <Link className="text-white underline-hover-effect" to="/">Home</Link>
+                <Link className="text-white underline-hover-effect" to="https://diamondtofu.com/">Home</Link>
               </li>
               <li>
-                <Link className="text-white underline-hover-effect" to="/about">About</Link>
+                <Link className="text-white underline-hover-effect" to="https://diamondtofu.com/about">About</Link>
               </li>
               <li>
-                <Link className="text-white underline-hover-effect" to="/services">Services</Link>
+                <Link className="text-white underline-hover-effect" to="https://diamondtofu.com/services">Services</Link>
               </li>
               <li>
-                <Link className="text-white underline-hover-effect" to="/contact">Contact</Link>
+                <Link className="text-white underline-hover-effect" to="https://diamondtofu.com/contact">Contact</Link>
               </li>
               <li>
-                <Link className="text-white underline-hover-effect" to="/career">Career</Link>
+                <Link className="text-white underline-hover-effect" to="/">Career</Link>
               </li>
             </ul>
           </div>

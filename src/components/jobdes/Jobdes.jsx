@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 export const Jobdes = () => {
   return (
     <section className="jobdes">
@@ -57,7 +57,9 @@ export const Jobdes = () => {
           </div>
           <br />
           <div className="btnpadding btn-block ">
-            <Button>Apply</Button>
+            <Button onClick={() => {
+                        window.location.replace(`/form`);
+                      }}>Apply</Button>
           </div>
         </div>
       </div>

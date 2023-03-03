@@ -62,101 +62,103 @@ export const FormComponent = () => {
   return (
     <>
       <section className="jobdes">
-        <div className="container padding-top">
-          <div className="text-black text-center">
-            <h1>Full-Time Software Engineer</h1>
-          </div>
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">
-              First Name
-            </InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              value={firstN}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">
-              Last Name
-            </InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              value={lastN}
-              onChange={(event) => setlastname(event.target.value)}
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">
-              Location
-            </InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-          </InputGroup>
-          <br />
-          <br />
-          <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-          </InputGroup>
-          <br />
-          <div className="btnpadding btn-block ">
-            <Button onClick={writeNewPost}>Apply</Button>
-          </div>
-          <div className="btnpadding btn-block ">
-            <Button onClick={getPosts}>get post</Button>
+        <div className="container">
+          <div className="px-9 pt-9 pb-9">
+            <div className="text-center text-violet-700">
+              <h1>Full-Time Software Engineer</h1>
+            </div>
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">
+                First Name
+              </InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+                value={firstN}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">
+                Last Name
+              </InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+                value={lastN}
+                onChange={(event) => setlastname(event.target.value)}
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">
+                Location
+              </InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+            </InputGroup>
+            <br />
+            <br />
+            <InputGroup size="lg">
+              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-sm"
+              />
+            </InputGroup>
+            <br />
+            <div className="btnpadding btn-block ">
+              <Button onClick={writeNewPost}>Apply</Button>
+            </div>
+            <div className="btnpadding btn-block ">
+              <Button onClick={getPosts}>get post</Button>
+            </div>
           </div>
         </div>
       </section>

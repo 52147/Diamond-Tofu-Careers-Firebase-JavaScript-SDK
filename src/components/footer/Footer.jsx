@@ -1,7 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocation } from '@fortawesome/free-solid-svg-icons'
-
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 
