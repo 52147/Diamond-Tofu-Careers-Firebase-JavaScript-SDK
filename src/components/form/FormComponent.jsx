@@ -6,17 +6,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Initialize Firebase
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBU3h0sxwRtCttbizkG5lSMvw6For0Wd6A",
-//   authDomain: "diamond-tofu-career.firebaseapp.com",
-//   projectId: "diamond-tofu-career",
-//   storageBucket: "diamond-tofu-career.appspot.com",
-//   messagingSenderId: "657730990855",
-//   appId: "1:657730990855:web:2dc941d2e38b5320e30ba2",
-//   measurementId: "G-30Q73BL49S",
-// };
-
-
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
   authDomain: "diamond-tofu-career.firebaseapp.com",
