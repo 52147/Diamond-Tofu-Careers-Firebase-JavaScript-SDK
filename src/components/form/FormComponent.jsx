@@ -1,9 +1,9 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs  } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -16,15 +16,14 @@ const firebaseConfig = {
   measurementId: "G-30Q73BL49S",
 };
 
-const firebaseApp = initializeApp(firebaseConfig)
-const db = getFirestore(firebaseApp)
-
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
 
 export const FormComponent = () => {
   let [firstN, setUsername] = useState("");
-let [lastN, setlastname] = useState("");
-let [email, setEmail] = useState("");
-let [location, setLocation] = useState("");
+  let [lastN, setlastname] = useState("");
+  let [email, setEmail] = useState("");
+  let [location, setLocation] = useState("");
 
   async function getPosts() {
     const querySnapshot = await getDocs(collection(db, "resumes"));
@@ -34,13 +33,7 @@ let [location, setLocation] = useState("");
     });
   }
 
-  async function writeNewPost(
-    uid,
-    username,
-    picture,
-    title,
-    body
-  ) {
+  async function writeNewPost(uid, username, picture, title, body) {
     // A post entry.
     // const postData = {
     //   firstN: "abc",
@@ -75,21 +68,22 @@ let [location, setLocation] = useState("");
           </div>
           <br />
           <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">First Name</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-lg">
+              First Name
+            </InputGroup.Text>
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
-              value = {firstN}
-              onChange={(event) => setUsername(event.target.value)
-              }
-              
+              value={firstN}
+              onChange={(event) => setUsername(event.target.value)}
             />
-
           </InputGroup>
           <br />
           <br />
           <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Last Name</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-lg">
+              Last Name
+            </InputGroup.Text>
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
@@ -104,7 +98,6 @@ let [location, setLocation] = useState("");
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
-            
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -112,7 +105,9 @@ let [location, setLocation] = useState("");
           <br />
           <br />
           <InputGroup size="lg">
-            <InputGroup.Text id="inputGroup-sizing-lg">Location</InputGroup.Text>
+            <InputGroup.Text id="inputGroup-sizing-lg">
+              Location
+            </InputGroup.Text>
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
