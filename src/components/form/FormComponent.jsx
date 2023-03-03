@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
@@ -19,7 +19,13 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const db = getFirestore(firebaseApp)
 
+
 export const FormComponent = () => {
+  let [firstN, setUsername] = useState("");
+let [lastN, setlastname] = useState("");
+let [email, setEmail] = useState("");
+let [location, setLocation] = useState("");
+
   async function getPosts() {
     const querySnapshot = await getDocs(collection(db, "resumes"));
     return querySnapshot.docs.map((doc) => {
@@ -36,13 +42,21 @@ export const FormComponent = () => {
     body
   ) {
     // A post entry.
+    // const postData = {
+    //   firstN: "abc",
+    //   lastN: "123",
+    //   title: "", // PM | full-time ...
+    //   email: "test@gmail.com",
+    //   location: "LA",
+    // };
     const postData = {
-      firstN: "abc",
-      lastN: "123",
-      title: "", // PM | full-time ...
-      email: "test@gmail.com",
-      location: "LA",
+      firstN: firstN,
+      lastN: lastN,
+      title: "Intern SDE", // PM | full-time ...
+      email: email,
+      location: location,
     };
+    console.log(firstN);
 
     try {
       const docRef = await addDoc(collection(db, "resumes"), postData);
@@ -65,7 +79,12 @@ export const FormComponent = () => {
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
+              value = {firstN}
+              onChange={(event) => setUsername(event.target.value)
+              }
+              
             />
+
           </InputGroup>
           <br />
           <br />
@@ -74,6 +93,8 @@ export const FormComponent = () => {
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
+              value={lastN}
+              onChange={(event) => setlastname(event.target.value)}
             />
           </InputGroup>
           <br />
@@ -83,6 +104,9 @@ export const FormComponent = () => {
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
+            
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </InputGroup>
           <br />
@@ -92,6 +116,8 @@ export const FormComponent = () => {
             <Form.Control
               aria-label="Large"
               aria-describedby="inputGroup-sizing-sm"
+              value={location}
+              onChange={(event) => setLocation(event.target.value)}
             />
           </InputGroup>
           <br />
