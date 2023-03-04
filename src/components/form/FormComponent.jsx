@@ -4,6 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { updateData } from '../../database/firebase';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -42,17 +43,33 @@ export const FormComponent = () => {
     //   email: "test@gmail.com",
     //   location: "LA",
     // };
+    // let courseId = course.term[0] + course.number;
     const postData = {
+      id:1,
       firstN: firstN,
       lastN: lastN,
       title: "Intern SDE", // PM | full-time ...
       email: email,
       location: location,
     };
-    console.log(firstN);
+
+    
+   
+    // updateData(`/courses/${courseId}/title`, meetingTitle);
+    // updateData(`/courses/${courseId}/meets`, meetingTime);
+
+    // updateData(`/resumes/BxxdSCySvWVsfj14gaC6/first_name`, firstN);
+    // updateData(`/resumes/last_name`, lastN);
+    // const doc = {'birthday': '1223'}
+    // updateData("resumes/1",lastN);
+    
+
+
 
     try {
       const docRef = await addDoc(collection(db, "resumes"), postData);
+      
+      // updateData(`resumes/1`,doc);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
