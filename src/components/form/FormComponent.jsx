@@ -38,7 +38,7 @@ export const FormComponent = () => {
   async function writeNewPost() {
     const db = getDatabase();
     try{
-      await set(ref(db, `/testuser/${email}`), {
+      await set(ref(db, `/testuser/${lastN}`), {
       first_name: firstN,
       last_name: lastN,
       email: email,
@@ -55,7 +55,7 @@ export const FormComponent = () => {
 
   async function getPosts() {
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `/testuser/${email}`))
+    get(child(dbRef, `/testuser/${lastN}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
           console.log(snapshot.val());
