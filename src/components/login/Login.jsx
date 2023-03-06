@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { getDatabase, ref, set, child, get, onValue } from "firebase/database";
 import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { Button, Modal } from "react-bootstrap";
 
 export const Login = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  const handleClose = () => setShow(false);
+  const [show, setShow] = useState(false);
+
   const db = getDatabase();
   const navigate = useNavigate();
 
@@ -42,6 +46,8 @@ export const Login = () => {
             navigate("/table");
           }
         }
+        setShow(true);
+
         // ...
       },
       {
@@ -99,6 +105,17 @@ export const Login = () => {
             >
               Sign On
             </button>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>This account {username} is not in DB</Modal.Title>
+              </Modal.Header>
+              <Modal.Body> Do not have your account</Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>
