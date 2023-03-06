@@ -88,7 +88,7 @@ export const Login = () => {
 
               onClick={submitUser}
             >
-              Submit
+              Login
             </button>
             <button
               className="buttonClass inputClass"
@@ -97,7 +97,7 @@ export const Login = () => {
 
               onClick={writeNewPost}
             >
-              Submit
+              Sign On
             </button>
           </div>
         </div>

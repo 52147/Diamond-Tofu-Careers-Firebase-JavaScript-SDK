@@ -25,6 +25,9 @@ export const Header = () => {
               <li>
                 <Link className="text-white underline-hover-effect" to="/">Career</Link>
               </li>
+              <li>
+                <Link className="text-white underline-hover-effect" to="/login">Login</Link>
+              </li>
             </ul>
           </div>
           <img className="logo" src="DT logo.png" alt="" />
