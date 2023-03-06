@@ -8,7 +8,7 @@ export const Home = () => {
         <img src="career-img.jpg" alt="" />
       </div>
       <div className = "middleText">
-        <h1>Diamond Tofu</h1>
+        <h1 className='text-9xl	'>Diamond Tofu</h1>
       </div>
     </section>
     </>

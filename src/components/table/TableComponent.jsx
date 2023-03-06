@@ -77,6 +77,10 @@ export const TableComponent = () => {
               </div>
               <div>
                 <h1>Email: {filteredData.email}</h1>
+                <h1>Education: {filteredData.education}</h1>
+                <h1>Accomplishment: {filteredData.accomplish}</h1>
+                <h1>Visa Status: {filteredData.visa}</h1>
+                <h1>Resume Link: {filteredData.resume}</h1>
               </div>
             </div>
             <div className="table-responsive">
@@ -87,6 +91,10 @@ export const TableComponent = () => {
                     <th>Last Name</th>
                     <th>Location</th>
                     <th>Email</th>
+                    <th>Education</th>
+                    <th>Accomplishments</th>
+                    <th>Visa Status</th>
+                    <th>Resume Link</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,6 +104,10 @@ export const TableComponent = () => {
                       <td>{item.last_name}</td>
                       <td>{item.location}</td>
                       <td>{item.email}</td>
+                      <td>{item.education}</td>
+                      <td>{item.accomplish}</td>
+                      <td>{item.visa}</td>
+                      <td>{item.resume}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -13,21 +13,6 @@ export const Login = () => {
   const db = getDatabase();
   const navigate = useNavigate();
 
-  async function writeNewPost() {
-    const db = getDatabase();
-    try {
-      await set(ref(db, `/auth/${username}`), {
-        account: username,
-        password: password,
-      }).then(() => {
-        console.log("Data saved successfully!");
-        // Data saved successfully!
-      });
-    } catch (error) {
-      console.log(error);
-      // The write failed...
-    }
-  }
 
   const submitUser = async () => {
     console.log(username);
@@ -96,15 +81,7 @@ export const Login = () => {
             >
               Login
             </button>
-            <button
-              className="buttonClass inputClass"
-              // html dom event: onMouseOver, onMouseOut
-              // event handling: allows javascript handle html event
 
-              onClick={writeNewPost}
-            >
-              Sign On
-            </button>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>This account {username} is not in DB</Modal.Title>

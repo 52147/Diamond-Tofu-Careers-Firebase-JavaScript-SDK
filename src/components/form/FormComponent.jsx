@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { updateData, useDbData, useDbUpdate } from "../../database/firebase";
-import { getDatabase, ref, set, child, get  } from "firebase/database";
+import { getDatabase, ref, set, child, get } from "firebase/database";
 
 // Initialize Firebase
 // const firebaseConfig = {
@@ -26,7 +26,10 @@ export const FormComponent = () => {
   let [lastN, setlastname] = useState("");
   let [email, setEmail] = useState("");
   let [location, setLocation] = useState("");
-
+  let [education, setEducation] = useState("");
+  let [accomplish, setAccomplish] = useState("");
+  let [visa, setVisa] = useState("");
+  let [resume, setResume] = useState("");
   // const [testuser] = useDbUpdate(`/testuser/${email}`);
 
   // function writeNewPost(e){
@@ -37,17 +40,21 @@ export const FormComponent = () => {
 
   async function writeNewPost() {
     const db = getDatabase();
-    try{
+    try {
       await set(ref(db, `/testuser/${lastN}`), {
-      first_name: firstN,
-      last_name: lastN,
-      email: email,
-      location: location,
-    }).then(() => {
-      console.log("Data saved successfully!");
-      // Data saved successfully!
-    })
-  }catch(error) {
+        first_name: firstN,
+        last_name: lastN,
+        email: email,
+        location: location,
+        education: education,
+        accomplish: accomplish,
+        visa: visa,
+        resume: resume
+      }).then(() => {
+        console.log("Data saved successfully!");
+        // Data saved successfully!
+      });
+    } catch (error) {
       console.log(error);
       // The write failed...
     }
@@ -66,7 +73,7 @@ export const FormComponent = () => {
       .catch((error) => {
         console.error(error);
       });
-  
+
     // const querySnapshot = await getDocs(collection(db, "resumes"));
     // return querySnapshot.docs.map((doc) => {
     //   console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
@@ -117,90 +124,98 @@ export const FormComponent = () => {
               <h1>Full-Time Software Engineer</h1>
             </div>
             <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">
-                First Name
-              </InputGroup.Text>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>First Name</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="First Name"
                 value={firstN}
                 onChange={(event) => setUsername(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">
-                Last Name
-              </InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Last Name</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Last Name"
                 value={lastN}
                 onChange={(event) => setlastname(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">
-                Location
-              </InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Location</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Location"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Education</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Education"
+                value={education}
+                onChange={(event) => setEducation(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Top 3 accomplishments at work/school.</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                as="textarea"
+                rows={3}
+                type="email"
+                placeholder="accomplishments"
+                value={accomplish}
+                onChange={(event) => setAccomplish(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label> Visa Status</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Visa"
+                value={visa}
+                onChange={(event) => setVisa(event.target.value)}
               />
-            </InputGroup>
-            <br />
-            <br />
-            <InputGroup size="lg">
-              <InputGroup.Text id="inputGroup-sizing-lg">Large</InputGroup.Text>
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Personal website/ LinkedIn</Form.Label>
               <Form.Control
-                aria-label="Large"
-                aria-describedby="inputGroup-sizing-sm"
+                type="email"
+                placeholder="Personal website/ LinkedIn"
+                value={resume}
+                onChange={(event) => setResume(event.target.value)}
               />
-            </InputGroup>
+            </Form.Group>
+            
+
             <br />
             <div className="btnpadding btn-block ">
               <Button onClick={writeNewPost}>Apply</Button>

@@ -103,9 +103,15 @@ a.underline-hover-effect {
   position: relative;
 }
 .home h1{
-  font-size: 60px;
-  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
-  margin: 0;
+  /* font-size: 60px; */
+  margin-top: 40px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 5px;
+  text-shadow: 3px 3px 20px #b590ff,
+    -2px 1px 30px #b590ff;
 }
 .middleText {
   position: absolute;
