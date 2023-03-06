@@ -3,22 +3,23 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { updateData } from '../../database/firebase';
+// import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { updateData, useDbData, useDbUpdate } from "../../database/firebase";
+import { getDatabase, ref, set, child, get  } from "firebase/database";
 
 // Initialize Firebase
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: "diamond-tofu-career.firebaseapp.com",
-  projectId: "diamond-tofu-career",
-  storageBucket: "diamond-tofu-career.appspot.com",
-  messagingSenderId: "657730990855",
-  appId: "1:657730990855:web:2dc941d2e38b5320e30ba2",
-  measurementId: "G-30Q73BL49S",
-};
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_apiKey,
+//   authDomain: "diamond-tofu-career.firebaseapp.com",
+//   projectId: "diamond-tofu-career",
+//   storageBucket: "diamond-tofu-career.appspot.com",
+//   messagingSenderId: "657730990855",
+//   appId: "1:657730990855:web:2dc941d2e38b5320e30ba2",
+//   measurementId: "G-30Q73BL49S",
+// };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
+// const firebaseApp = initializeApp(firebaseConfig);
+// const db = getFirestore(firebaseApp);
 
 export const FormComponent = () => {
   let [firstN, setUsername] = useState("");
@@ -26,55 +27,86 @@ export const FormComponent = () => {
   let [email, setEmail] = useState("");
   let [location, setLocation] = useState("");
 
-  async function getPosts() {
-    const querySnapshot = await getDocs(collection(db, "resumes"));
-    return querySnapshot.docs.map((doc) => {
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-      return doc.data();
-    });
-  }
+  // const [testuser] = useDbUpdate(`/testuser/${email}`);
 
-  async function writeNewPost(uid, username, picture, title, body) {
-    // A post entry.
-    // const postData = {
-    //   firstN: "abc",
-    //   lastN: "123",
-    //   title: "", // PM | full-time ...
-    //   email: "test@gmail.com",
-    //   location: "LA",
-    // };
-    // let courseId = course.term[0] + course.number;
-    const postData = {
-      id:1,
-      firstN: firstN,
-      lastN: lastN,
-      title: "Intern SDE", // PM | full-time ...
+  // function writeNewPost(e){
+  //   e.preventDefault();
+  //   testuser({first_name: firstN, last_name: lastN, email: email, location: location});
+
+  // }
+
+  async function writeNewPost() {
+    const db = getDatabase();
+    try{
+      await set(ref(db, `/testuser/${email}`), {
+      first_name: firstN,
+      last_name: lastN,
       email: email,
       location: location,
-    };
-
-    
-   
-    // updateData(`/courses/${courseId}/title`, meetingTitle);
-    // updateData(`/courses/${courseId}/meets`, meetingTime);
-
-    // updateData(`/resumes/BxxdSCySvWVsfj14gaC6/first_name`, firstN);
-    // updateData(`/resumes/last_name`, lastN);
-    // const doc = {'birthday': '1223'}
-    // updateData("resumes/1",lastN);
-    
-
-
-
-    try {
-      const docRef = await addDoc(collection(db, "resumes"), postData);
-      
-      // updateData(`resumes/1`,doc);
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    }).then(() => {
+      console.log("Data saved successfully!");
+      // Data saved successfully!
+    })
+  }catch(error) {
+      console.log(error);
+      // The write failed...
     }
   }
+
+  async function getPosts() {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `/testuser/${email}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  
+    // const querySnapshot = await getDocs(collection(db, "resumes"));
+    // return querySnapshot.docs.map((doc) => {
+    //   console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    //   return doc.data();
+    // });
+  }
+
+  // async function writeNewPost(uid, username, picture, title, body) {
+  //   // A post entry.
+  //   // const postData = {
+  //   //   firstN: "abc",
+  //   //   lastN: "123",
+  //   //   title: "", // PM | full-time ...
+  //   //   email: "test@gmail.com",
+  //   //   location: "LA",
+  //   // };
+  //   // let courseId = course.term[0] + course.number;
+  //   const postData = {
+  //     id:1,
+  //     firstN: firstN,
+  //     lastN: lastN,
+  //     title: "Intern SDE", // PM | full-time ...
+  //     email: email,
+  //     location: location,
+  //   };
+  //   // updateData(`/courses/${courseId}/title`, meetingTitle);
+  //   // updateData(`/courses/${courseId}/meets`, meetingTime);
+  //   // updateData(`/resumes/BxxdSCySvWVsfj14gaC6/first_name`, firstN);
+  //   // updateData(`/resumes/last_name`, lastN);
+  //   // const doc = {'birthday': '1223'}
+  //   // updateData("resumes/1",lastN);
+  //   try {
+  //     const docRef = await addDoc(collection(db, "resumes"), postData);
+
+  //     // updateData(`resumes/1`,doc);
+  //     console.log("Document written with ID: ", docRef.id);
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // }
 
   return (
     <>

@@ -12,6 +12,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { TablePage } from './components/pageContent/TablePage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/career' exact element={<CareerPage />} />
           <Route path='/jobdes' exact element={<JobDesPage />} />
           <Route path='/form' exact element={<FormPage />} />
+          <Route path='/table' exact element={<TablePage />} />
         </Routes>
         <Footer/>
     </Router>
