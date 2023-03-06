@@ -29,16 +29,15 @@ export const TableComponent = () => {
     );
   }, []);
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     const lname = event.target.value;
     const db = getDatabase();
 
-    return onValue(
+    onValue(
       ref(db, `/testuser/${lname}`),
       (snapshot) => {
         console.log(lname);
-        const username =
-          (snapshot.val() && snapshot.val()) || "Anonymous";
+        const username = (snapshot.val() && snapshot.val()) || "Anonymous";
         // ...
         setFilteredData(username);
       },
@@ -67,16 +66,23 @@ export const TableComponent = () => {
                   onChange={handleSearch}
                 />
               </div>
-              <div><h1>First Name: {filteredData.first_name}</h1></div>
-              <div><h1>Last Name: {filteredData.last_name}</h1></div>
-              <div><h1>Location: {filteredData.location}</h1></div>
-              <div><h1>Email: {filteredData.email}</h1></div>
+              <div>
+                <h1>First Name: {filteredData.first_name}</h1>
+              </div>
+              <div>
+                <h1>Last Name: {filteredData.last_name}</h1>
+              </div>
+              <div>
+                <h1>Location: {filteredData.location}</h1>
+              </div>
+              <div>
+                <h1>Email: {filteredData.email}</h1>
+              </div>
             </div>
             <div className="table-responsive">
               <table className="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Location</th>
