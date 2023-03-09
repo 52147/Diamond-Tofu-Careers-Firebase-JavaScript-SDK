@@ -1,11 +1,11 @@
 import React from 'react'
 import { Home } from '../home/Home'
 import {PosType} from '../home/PosType'
-export const HomePage = () => {
+export const HomePage = ({setTitle}) => {
   return (
     <>
     <Home/>
-    <PosType/>
+    <PosType setTitle = {setTitle}/>
     </>
   )
 }

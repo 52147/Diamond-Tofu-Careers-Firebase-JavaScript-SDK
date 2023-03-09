@@ -1,9 +1,9 @@
 import React from 'react'
 import {Jobdes} from '../jobdes/Jobdes'
-export const JobDesPage = () => {
+export const JobDesPage = ({ title }) => {
   return (
     <>
-    <Jobdes/>
+    <Jobdes setTitle={title}/>
     </>
   )
 }

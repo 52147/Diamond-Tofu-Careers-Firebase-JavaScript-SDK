@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Button } from "react-bootstrap";
+import { Button, Modal  } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { updateData, useDbData, useDbUpdate } from "../../database/firebase";
@@ -30,6 +30,10 @@ export const FormComponent = () => {
   let [accomplish, setAccomplish] = useState("");
   let [visa, setVisa] = useState("");
   let [resume, setResume] = useState("");
+
+  const handleClose = () => setShow(false);
+  const [show, setShow] = useState(false);
+
   // const [testuser] = useDbUpdate(`/testuser/${email}`);
 
   // function writeNewPost(e){
@@ -52,6 +56,7 @@ export const FormComponent = () => {
         resume: resume
       }).then(() => {
         console.log("Data saved successfully!");
+        setShow(true);
         // Data saved successfully!
       });
     } catch (error) {
@@ -225,6 +230,17 @@ export const FormComponent = () => {
             </div>
           </div>
         </div>
+        <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Apply Successfully</Modal.Title>
+              </Modal.Header>
+              <Modal.Body> Thank you {lastN} for applying this application.</Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
       </section>
     </>
   );
