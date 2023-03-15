@@ -19,7 +19,7 @@ import { getDatabase, ref, set, child, get } from "firebase/database";
 // };
 
 // const firebaseApp = initializeApp(firebaseConfig);
-// const db = getFirestore(firebaseApp);
+// const db = getFirestore(firebaseApp);１２３
 
 export const FormComponent = () => {
   let [firstN, setUsername] = useState("");
@@ -211,7 +211,7 @@ export const FormComponent = () => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Personal website/ LinkedIn</Form.Label>
+              <Form.Label>Personal website/ LinkedIn 123</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Personal website/ LinkedIn"
