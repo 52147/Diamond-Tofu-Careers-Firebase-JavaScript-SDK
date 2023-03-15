@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal  } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 // import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { updateData, useDbData, useDbUpdate } from "../../database/firebase";
@@ -53,7 +53,7 @@ export const FormComponent = () => {
         education: education,
         accomplish: accomplish,
         visa: visa,
-        resume: resume,
+        resume: resume
       }).then(() => {
         console.log("Data saved successfully!");
         setShow(true);
@@ -219,6 +219,7 @@ export const FormComponent = () => {
                 onChange={(event) => setResume(event.target.value)}
               />
             </Form.Group>
+            
 
             <br />
             <div className="btnpadding btn-block ">
@@ -230,19 +231,16 @@ export const FormComponent = () => {
           </div>
         </div>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Apply Successfully</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {" "}
-            Thank you {lastN} for applying this application.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+              <Modal.Header closeButton>
+                <Modal.Title>Apply Successfully</Modal.Title>
+              </Modal.Header>
+              <Modal.Body> Thank you {lastN} for applying this application.</Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
       </section>
     </>
   );
