@@ -3,16 +3,42 @@ import { getDatabase, ref, set, child, get, onValue } from "firebase/database";
 import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Button, Modal } from "react-bootstrap";
+import { signInWithGooglePopup } from "../../database/firebase";
+import { useReducer } from "react";
+import { reducer } from "../../reducer/loginReducer";
 
 export const Login = () => {
+  const [state, dispatch] = useReducer(reducer);
+
+  function handleButtonClick() {}
+
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   const handleClose = () => setShow(false);
   const [show, setShow] = useState(false);
 
+  const [login, setLoginData] = useState(false);
+
   const db = getDatabase();
   const navigate = useNavigate();
 
+  // const GoogleLogin = () => {
+
+  //   const logGoogleUser = async () => {
+  //     const response = await signInWithGooglePopup();
+  //     console.log(response);
+  //   };
+  // }
+  const GoogleLogin = async () => {
+    try {
+      const response = await signInWithGooglePopup();
+
+      dispatch({ googleAuthData: response, type: "setData" });
+      console.log(state.googleAuthData);
+    } catch (error) {
+      console.log("login failed");
+    }
+  };
 
   const submitUser = async () => {
     console.log(username);
@@ -80,6 +106,9 @@ export const Login = () => {
               onClick={submitUser}
             >
               Login
+            </button>
+            <button className="buttonClass inputClass" onClick={GoogleLogin}>
+              Login with Google
             </button>
 
             <Modal show={show} onHide={handleClose}>
