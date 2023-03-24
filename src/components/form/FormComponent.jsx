@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Button, Modal  } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
-import {  getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { db, updateData, useDbData, useDbUpdate } from "../../database/firebase";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  db,
+  updateData,
+  useDbData,
+  useDbUpdate,
+} from "../../database/firebase";
+import emailjs from '@emailjs/browser';
+
 // import { getFirestore, getDatabase, ref, set, child, get } from "firebase/database";
 
 // Initialize Firebase
@@ -33,7 +40,7 @@ export const FormComponent = () => {
 
   const handleClose = () => setShow(false);
   const [show, setShow] = useState(false);
-
+  const form = useRef();
   // const [testuser] = useDbUpdate(`/testuser/${email}`);
 
   // function writeNewPost(e){
@@ -82,13 +89,52 @@ export const FormComponent = () => {
     const querySnapshot = await getDocs(collection(db, "resumes"));
     return querySnapshot.docs.map((doc) => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-     
+
       return doc.data();
     });
-    
   }
 
-  async function writeNewPost(uid, username, picture, title, body) {
+  async function writeNewPost(e) {
+    emailjs.sendForm('service_m6td8xi', 'template_q7m09ga', form.current, '34k_iE5a6LQj_hmU8')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+    // const apiKey = 'key-da9765c5ee13364f7d538df08a15ff11';
+    // const domain = 'diamondtofucareer.com';
+    // const url = `https://api.mailgun.net/v3/${domain}/form`;
+
+    // const formData = new FormData();
+    // const from = "debra4117@gmail.com";
+    // const to = "debra4117@gmail.com";
+    // const subject = "123";
+    // const text = "456";
+    // formData.append('from', from);
+    // formData.append('to', to);
+    // formData.append('subject', subject);
+    // formData.append('text', text);
+
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Authorization': 'Basic ' + btoa('api:YOUR_API_KEY'),
+    //     "Content-Type": "multipart/form-data",
+    //     'Referrer-Policy': 'strict-origin-when-cross-origin'
+    //   },
+    //   body: formData,
+    // })
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     alert('Email sent successfully!');
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //     alert('Failed to send email.');
+    //   });
+
     // A post entry.
     // const postData = {
     //   firstN: "abc",
@@ -99,7 +145,7 @@ export const FormComponent = () => {
     // };
     // let courseId = course.term[0] + course.number;
     const postData = {
-      id:1,
+      id: 1,
       firstN: firstN,
       lastN: lastN,
       title: "Intern SDE", // PM | full-time ...
@@ -128,12 +174,14 @@ export const FormComponent = () => {
               <h1>Full-Time Software Engineer</h1>
             </div>
             <br />
+            <form action="" ref={form} >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>First Name</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="First Name"
                 value={firstN}
+                name="user_name" 
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>
@@ -141,7 +189,7 @@ export const FormComponent = () => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Last Name"
                 value={lastN}
                 onChange={(event) => setlastname(event.target.value)}
@@ -154,6 +202,7 @@ export const FormComponent = () => {
                 type="email"
                 placeholder="Email"
                 value={email}
+                name="user_email"
                 onChange={(event) => setEmail(event.target.value)}
               />
             </Form.Group>
@@ -161,7 +210,7 @@ export const FormComponent = () => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Location</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Location"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
@@ -171,7 +220,7 @@ export const FormComponent = () => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Education</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Education"
                 value={education}
                 onChange={(event) => setEducation(event.target.value)}
@@ -186,7 +235,7 @@ export const FormComponent = () => {
               <Form.Control
                 as="textarea"
                 rows={3}
-                type="email"
+                type="text"
                 placeholder="accomplishments"
                 value={accomplish}
                 onChange={(event) => setAccomplish(event.target.value)}
@@ -199,7 +248,7 @@ export const FormComponent = () => {
             >
               <Form.Label> Visa Status</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Visa"
                 value={visa}
                 onChange={(event) => setVisa(event.target.value)}
@@ -212,14 +261,13 @@ export const FormComponent = () => {
             >
               <Form.Label>Personal website/ LinkedIn 123</Form.Label>
               <Form.Control
-                type="email"
+                type="text"
                 placeholder="Personal website/ LinkedIn"
                 value={resume}
                 onChange={(event) => setResume(event.target.value)}
               />
             </Form.Group>
-            
-
+            </form>
             <br />
             <div className="btnpadding btn-block ">
               <Button onClick={writeNewPost}>Apply</Button>
@@ -229,17 +277,21 @@ export const FormComponent = () => {
             </div>
           </div>
         </div>
+        
         <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Apply Successfully</Modal.Title>
-              </Modal.Header>
-              <Modal.Body> Thank you {lastN} for applying this application.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Apply Successfully</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {" "}
+            Thank you {lastN} for applying this application.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </section>
     </>
   );
