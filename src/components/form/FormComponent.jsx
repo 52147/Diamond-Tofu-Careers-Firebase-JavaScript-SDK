@@ -95,12 +95,34 @@ export const FormComponent = () => {
   }
 
   async function writeNewPost(e) {
+
+    const postData = {
+      id: 1,
+      firstN: firstN,
+      lastN: lastN,
+      title: "Intern SDE", // PM | full-time ...
+      email: email,
+      location: location,
+    };
+
+    try {
+      const docRef = await addDoc(collection(db, "resumes"), postData);
+
+      // updateData(`resumes/1`,doc);
+      setShow(true);
+
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
     emailjs.sendForm('service_m6td8xi', 'template_q7m09ga', form.current, '34k_iE5a6LQj_hmU8')
     .then((result) => {
         console.log(result.text);
     }, (error) => {
         console.log(error.text);
     });
+    
     // const apiKey = 'key-da9765c5ee13364f7d538df08a15ff11';
     // const domain = 'diamondtofucareer.com';
     // const url = `https://api.mailgun.net/v3/${domain}/form`;
@@ -144,25 +166,7 @@ export const FormComponent = () => {
     //   location: "LA",
     // };
     // let courseId = course.term[0] + course.number;
-    const postData = {
-      id: 1,
-      firstN: firstN,
-      lastN: lastN,
-      title: "Intern SDE", // PM | full-time ...
-      email: email,
-      location: location,
-    };
 
-    try {
-      const docRef = await addDoc(collection(db, "resumes"), postData);
-
-      // updateData(`resumes/1`,doc);
-      setShow(true);
-
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
   }
 
   return (

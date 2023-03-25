@@ -1,45 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, off, query, orderByChild, equalTo } from "firebase/database";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
+import { Button, Table, Form, Container, Row, Col } from "react-bootstrap";
+import { TableRow } from "./TableRow";
+// import { FaEnvelope } from 'react-icons/fa';
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 
 export const TableComponent = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [type, setType] = useState("Dictamen");
 
   useEffect(() => {
-    const db = getDatabase();
-    const dbRef = ref(db, "testuser");
-    let q = query(dbRef);
+    const db = getFirestore();
+    const dbCollection = collection(db, "resumes");
+    let q = query(dbCollection);
 
     if (searchQuery) {
       q = query(
-        dbRef,
-        orderByChild("last_name"),
-        equalTo(searchQuery.toLowerCase().trim())
+        dbCollection,
+        where("last_name", "==", searchQuery.toLowerCase().trim())
       );
     }
 
     const handleData = (snapshot) => {
       const items = [];
-      snapshot.forEach((childSnapshot) => {
-        const childData = childSnapshot.val();
-        console.log(childData); // Check if the expected data is being fetched
-        items.push({ ...childData, id: childSnapshot.key });
+      snapshot.forEach((doc) => {
+        const docData = doc.data();
+        console.log(docData); // Check if the expected data is being fetched
+        items.push({ ...docData, id: doc.id, status: "Pending" });
       });
       console.log(items); // Check if the expected data is being stored in the array
       setData(items);
       setFilteredData(items);
     };
+    // const handleStatus = () =>{}
+    // function handleStatus(id, status) {
+    //   // your code here
+    // }
 
     const handleError = (error) => {
       console.error(error);
     };
 
-    onValue(q, handleData, handleError);
+    const unsubscribe = onSnapshot(q, handleData, handleError);
 
     return () => {
-      // Cleanup function to unsubscribe from Firebase queries
-      off(q, handleData);
+      // Cleanup function to unsubscribe from Firestore queries
+      unsubscribe();
     };
   }, [searchQuery]);
 
@@ -54,54 +68,94 @@ export const TableComponent = () => {
 
   return (
     <>
-      <div className="jobdes">
-        <div className="container">
-          <div className="pt-3.5 text-center text-violet-700">
-            <h1>Form Data Table</h1>
-          </div>
+      <div className="container">
+        <div className="pt-3.5 text-center text-violet-700">
+          <h1>Form Data Table</h1>
+        </div>
 
-          <br />
-          <div className="mb-3">
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search by Last Name"
-                onChange={handleSearch}
-              />
-            </div>
+        <div className="search-box mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by Last Name"
+            onChange={handleSearch}
+          />
+        </div>
 
-            <div className="table-responsive">
-              <table className="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Location</th>
-                    <th>Email</th>
-                    <th>Education</th>
-                    <th>Accomplishments</th>
-                    <th>Visa Status</th>
-                    <th>Resume Link</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredData.map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.first_name}</td>
-                      <td>{item.last_name}</td>
-                      <td>{item.location}</td>
-                      <td>{item.email}</td>
-                      <td>{item.education}</td>
-                      <td>{item.accomplish}</td>
-                      <td>{item.visa}</td>
-                      <td>{item.resume}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div className="table-responsive">
+          <table className="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Education</th>
+                <th>Accomplishments</th>
+                <th>Visa Status</th>
+                <th>Resume Link</th>
+                <th>Status</th>
+
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((item) => (
+                <TableRow key={item.id} item={item} />
+              ))}
+              {/* {data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.first_name}</td>
+                  <td>{item.last_name}</td>
+                  <td>{item.location}</td>
+                  <td>
+                    <a href={`mailto:${item.email}`}>{item.email}</a>
+                  </td>
+                  <td>{item.education}</td>
+                  <td>{item.accomplish}</td>
+                  <td>{item.visa}</td>
+                  <td>{item.resume}</td>
+                  <td>
+                  <Form.Select size="sm"
+                      className="mx-2"
+                      // value={item.status}
+                      // onChange={(e) =>{
+                      //   // console.log(e);
+                      //   // console.log(e.target);
+                      //   // console.log(e.target.value);
+                      //   // console.log(item.id);
+                      //   // handleStatus(item.id, e.target.value)
+
+                      // }
+                        
+                      //   // handleStatus(item.id, e.target.value)
+                      // }
+                      as="select"
+                      value={type}
+                      onChange={e => {
+                        console.log("e.target.value", e.target.value);
+                        setType(e.target.value);
+                      }}
+                    >
+                      <option value="Pending" >Pending</option>
+                      <option value="Reject" >Reject</option>
+                      <option value="Offer" >Offer</option>
+                    </Form.Select>
+                  </td>
+
+                  <td>
+                    <Button
+                      color="primary"
+                      size="sm"
+                      onClick={() => sendEmail(item.email)}
+                    >
+                      Email
+                    </Button>
+                  </td>
+                </tr>
+              ))} */}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
