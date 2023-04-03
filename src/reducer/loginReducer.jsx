@@ -3,6 +3,7 @@ import { useReducer } from 'react';
 export function reducer(state, action) {
     console.log(action);
     console.log(state);
+    // console.log(state.UserCredentialImpl);
 
   switch (action.type) {
     case 'setData': {

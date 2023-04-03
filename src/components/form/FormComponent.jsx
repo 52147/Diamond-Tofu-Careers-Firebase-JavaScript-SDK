@@ -115,8 +115,15 @@ export const FormComponent = () => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    const templateParams = {
+      user_email: email,
+      user_name: firstN + " " + lastN,
+      from_name: "Diamond Tofu",
+      message: "Application submitted successfully.",
+      // Add any other template parameters needed for the email
+    };
 
-    emailjs.sendForm('service_m6td8xi', 'template_q7m09ga', form.current, '34k_iE5a6LQj_hmU8')
+    emailjs.send('service_m6td8xi', 'template_q7m09ga', templateParams, '34k_iE5a6LQj_hmU8')
     .then((result) => {
         console.log(result.text);
     }, (error) => {
@@ -178,7 +185,7 @@ export const FormComponent = () => {
               <h1>Full-Time Software Engineer</h1>
             </div>
             <br />
-            <form action="" ref={form} >
+            <form action=""  >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>First Name</Form.Label>
               <Form.Control
