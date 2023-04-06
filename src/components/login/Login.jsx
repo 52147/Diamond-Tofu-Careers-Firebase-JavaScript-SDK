@@ -31,7 +31,7 @@ export const Login = () => {
     // Handle regular form submission
   };
 
-  if (authenticated) {
+  if (authenticated) { // 如果 authenticated 為真，我們調用 navigate("/table") 重定向到表格頁面
     navigate("/table");
     return null; // Return null to avoid rendering the Login component once the user is authenticated
   }
@@ -41,7 +41,7 @@ export const Login = () => {
       <div className="jobdes">
         <div className="container">
           <h1 className="font-medium text-center text-violet-700">
-            Login
+           Admin Login
           </h1>
 
           <div>
