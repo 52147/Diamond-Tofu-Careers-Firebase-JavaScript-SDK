@@ -93,6 +93,7 @@ export const TableComponent = () => {
                 <th>Education</th>
                 <th>Accomplishments</th>
                 <th>Visa Status</th>
+                <th>Website Link</th>
                 <th>Resume Link</th>
                 <th>Status</th>
 

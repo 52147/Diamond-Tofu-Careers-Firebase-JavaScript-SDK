@@ -12,7 +12,7 @@ export const Jobdes = ({ setTitle }) => {
 
   if (setTitle === "internship-software-engineer") {
     jobTitle = "Internship Software Engineer";
-    salary = "";
+    salary = "Unpaid";
     jobDescription = (
       <ul>
         <li>
@@ -78,7 +78,7 @@ export const Jobdes = ({ setTitle }) => {
     jobDuration = "3-6 months";
   } else if (setTitle === "internship-data-scientist") {
     jobTitle = "Internship Data Scientist";
-    salary = "";
+    salary = "Unpaid";
     jobDescription = (
       <ul>
         <li>
@@ -121,7 +121,7 @@ export const Jobdes = ({ setTitle }) => {
     jobDuration = "4-6 months";
   } else if (setTitle === "internship-project-manager") {
     jobTitle = "Internship Project Manager";
-    salary = "";
+    salary = "Unpaid";
     jobDescription = (
       <ul>
         <li>
@@ -400,7 +400,7 @@ export const Jobdes = ({ setTitle }) => {
             <div className="btnpadding btn-block ">
               <Button
                 onClick={() => {
-                  window.location.replace(`/form`);
+                  window.location.replace(`/pre`);
                 }}
               >
                 Apply

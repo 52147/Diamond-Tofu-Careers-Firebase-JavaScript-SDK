@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <>
       <header>
-        <div className="container flex text-white">
+        <div className="container headerflex text-white">
           <div className="nav">
             <ul className="nav-links text-white">
               <li className="text-white">
@@ -47,7 +47,7 @@ export const Header = () => {
               </li>
               <li>
                 <Link className="text-white underline-hover-effect" to="/login">
-                  Login
+                  Admin Login
                 </Link>
               </li>
             </ul>

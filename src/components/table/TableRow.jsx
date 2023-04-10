@@ -77,6 +77,7 @@ export const TableRow = ({ item }) => {
       <td>{item.education}</td>
       <td>{item.accomplish}</td>
       <td>{item.visa}</td>
+      <td>{item.link}</td>
       <td>{item.resume}</td>
       <td>
         <Form.Select

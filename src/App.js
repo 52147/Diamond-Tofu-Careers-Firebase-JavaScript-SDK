@@ -7,6 +7,9 @@ import { FormPage } from './components/pageContent/FormPage';
 import { Footer } from './components/footer/Footer';
 import { TablePage } from './components/pageContent/TablePage';
 import { LoginPage } from './components/pageContent/LoginPage';
+import { UserProfilePage } from './components/pageContent/UserProfilePage';
+import { PreApplyPage } from './components/pageContent/PreApplyPage';
+
 import React, { useState } from "react";
 
 import {
@@ -27,9 +30,11 @@ function App() {
           <Route path='/' exact element={<HomePage setTitle = {setTitle}/>}/>
           <Route path='/career' exact element={<CareerPage />} />
           <Route path='/jobdes' exact element={<JobDesPage title={title}/>} />
-          <Route path='/form' exact element={<FormPage />} />
+          <Route path='/form' exact element={<FormPage title={title}/>} />
           <Route path='/table' exact element={<TablePage />} />
           <Route path='/login' exact element={<LoginPage />} />
+          <Route path='/user' exact element={<UserProfilePage />} />
+          <Route path='/pre' exact element={<PreApplyPage />} />
         </Routes>
         <Footer/>
     </Router>
