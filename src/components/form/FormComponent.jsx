@@ -4,6 +4,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Button, Modal } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router";
+
 import emailjs from "@emailjs/browser";
 import {
   db,
@@ -11,7 +13,7 @@ import {
   useDbData,
   useDbUpdate,
 } from "../../database/firebase";
-export const FormComponent = ({ setTitle }) => {
+export const FormComponent = ({ setTitle, setDocument }) => {
   console.log(setTitle);
   let [firstN, setUsername] = useState("");
   let [lastN, setlastname] = useState("");
@@ -30,6 +32,12 @@ export const FormComponent = ({ setTitle }) => {
   const handleClose2 = () => setShowSuccessModal(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
+  const navigate = useNavigate();
+
+  
+
+
+  if(setTitle == ""){}
   const form = useRef();
 
   async function writeNewPost(e) {
@@ -70,8 +78,10 @@ export const FormComponent = ({ setTitle }) => {
       const docRef = await addDoc(collection(db, "resumes"), postData);
 
       setShowSuccessModal(true);
+      navigate("/apply");
 
       console.log("Document written with ID: ", docRef.id);
+      setDocument(docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }

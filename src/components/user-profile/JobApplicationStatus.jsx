@@ -14,7 +14,6 @@ export const JobApplicationStatus = (props) => {
       <div className="job-application-status">
         <h4>{props.title}</h4>
         <p>Current Status: {status}</p>
-
       </div>
     );
   };
