@@ -37,8 +37,8 @@ function App() {
           <Route path='/jobdes' exact element={<JobDesPage title={title}/>} />
           <Route path='/form' exact element={<FormPage title={title} setDocument = {setDocument} uid = {uid}/>} />
           <Route path='/table' exact element={<TablePage />} />
-          <Route path='/login' exact element={<LoginPage />} />
-          <Route path='/user' exact element={<UserProfilePage />} />
+          <Route path='/login' exact element={<LoginPage setUid = {setUid}/>} />
+          <Route path='/user' exact element={<UserProfilePage uid = {uid}/>} />
           <Route path='/pre' exact element={<PreApplyPage setUid = {setUid} />} />
           <Route path='/apply' exact element={<ApplySuccessPage document = {document}/>} />
         </Routes>

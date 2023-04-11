@@ -1,8 +1,8 @@
 import React from 'react'
 import {Login} from '../login/Login'
 
-export const LoginPage = () => {
+export const LoginPage = ({setUid}) => {
   return (
-    <Login/>
+    <Login setUid = {setUid}/>
   )
 }

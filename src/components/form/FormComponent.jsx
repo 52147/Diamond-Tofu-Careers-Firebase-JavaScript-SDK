@@ -73,7 +73,8 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       visa: visa,
       link: link,
       resume: resume,
-      uid: setUid
+      uid: setUid,
+      status: "Pending"
     };
 
     try {

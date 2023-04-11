@@ -47,7 +47,7 @@ export const Header = () => {
               </li>
               <li>
                 <Link className="text-white underline-hover-effect" to="/login">
-                  Admin Login
+                  Login
                 </Link>
               </li>
             </ul>

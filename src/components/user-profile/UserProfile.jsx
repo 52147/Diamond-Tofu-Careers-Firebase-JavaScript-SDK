@@ -1,32 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+} from "firebase/firestore";
 import { JobApplicationStatus } from "./JobApplicationStatus";
 import { UserProfileForm } from "./UserProfileForm";
-
-export const UserProfile = () => {
+export const UserProfile = ({ setUid }) => {
+  console.log(setUid);
   const [user, setUser] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    phone: "123-456-7890",
-    address: "123 Main St, Anytown USA",
-    resume: "123"
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    resume: "",
+    title: "",
+    status: "",
   });
+  const db = getFirestore();
 
-  const updateUser = (newUser) => {
-    setUser({ ...user, ...newUser });
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const q = query(
+        collection(db, "resumes"),
+        where("uid", "==", setUid),
+        limit(1)
+      );
+      const querySnapshot = await getDocs(q);
+      console.log(querySnapshot);
+      if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        setUser({
+          first_name: data.firstN || "",
+          last_name: data.lastN || "",
+          email: data.email || "",
+          phone: data.phone || "",
+          address: data.address || "",
+          resume: data.resume || "",
+          title: data.title || "",
+          status: data.status || "",
+        });
+      }
+    };
+    fetchData();
+  }, [db, setUid]);
 
   return (
     <div className="container mt-4 mb-4">
-      <div className="card">
-        <div className="card-body">
-          <h2 className="mb-0">{user.name}</h2>
-          <p className="text-muted">{user.email}</p>
-        </div>
-      </div>
       <div className="card mt-4 ">
         <div className="card-body">
           <h3 className="card-title">Personal Information</h3>
           <ul className="list-unstyled">
+            <li>
+              <strong>First Name: </strong>
+              {user.first_name}
+            </li>
+            <li>
+              <strong>Last Name: </strong>
+              {user.last_name}
+            </li>
             <li>
               <strong>Email: </strong>
               {user.email}
@@ -44,18 +79,22 @@ export const UserProfile = () => {
       </div>
       <div className="card mt-4">
         <div className="card-body">
+          <h3 className="card-title">Resume</h3>
+          <p>{user.resume}</p>
+        </div>
+      </div>
+      <div className="card mt-4">
+        <div className="card-body">
           <h3 className="card-title">Job Application Statuses</h3>
-          <JobApplicationStatus title="Software Engineer" status="Applied" />
-          <JobApplicationStatus title="Product Manager" status="Interviewing" />
+          <JobApplicationStatus title={user.title} status={user.status} />
         </div>
       </div>
       <div className="card mt-4">
         <div className="card-body">
           <h3 className="card-title">Settings</h3>
-          <UserProfileForm user={user} updateUser={updateUser} />
+          <UserProfileForm user={user} />
         </div>
       </div>
     </div>
   );
 };
-

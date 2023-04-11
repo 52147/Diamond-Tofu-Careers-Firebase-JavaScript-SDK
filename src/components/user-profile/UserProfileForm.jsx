@@ -1,22 +1,37 @@
 import React, { useState } from "react";
-
-export const UserProfileForm = ({ user, updateUser }) => {
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+} from "firebase/firestore";
+export const UserProfileForm = ({ user }) => {
   const [resume, setResume] = useState(user.resume);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.phone);
   const [address, setAddress] = useState(user.address);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateUser({ email, phone, address, resume});
+  const db = getFirestore();
+
+  const handleSubmit = async (updatedUser) => {
+    const uid = user.uid; // replace with user's UID
+    const userRef = doc(db, "resumes", uid);
+    console.log("hi");
+    try {
+      await updateDoc(userRef, updatedUser);
+      console.log("User updated successfully");
+    } catch (error) {
+      console.error("Error updating user: ", error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="mt-4">
-      <div className="form-group">
-
-
-      </div>
+      <div className="form-group"></div>
       <div className="form-group">
         <label htmlFor="email" className="text-lg font-bold">
           Email:
@@ -58,8 +73,8 @@ export const UserProfileForm = ({ user, updateUser }) => {
           Resume Link:
         </label>
         <input
-          type="email"
-          id="email"
+          type="text"
+          id="resume"
           className="form-control mt-2"
           value={resume}
           onChange={(event) => setResume(event.target.value)}
