@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useNavigate } from "react-router";
+import { signInWithGooglePopup } from "../../database/firebase";
 
-export const ApplyAs = () => {
+export const ApplyAs = ({ setUid, }) => {
 const navigate = useNavigate();
 
   const handleGuestApplyClick = () => {
@@ -10,8 +11,14 @@ const navigate = useNavigate();
     navigate("/form");
   };
 
-  const handleSignInClick = () => {
+  const handleSignInClick = async() => {
     // Handle sign in process
+    const response = await signInWithGooglePopup();
+    const uid = response.user.uid;
+    console.log(uid);
+    setUid(uid)
+    navigate("/form");
+
   };
 
   const jobOpenings = [

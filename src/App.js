@@ -23,8 +23,10 @@ import {
 function App() {
   const [title, setTitle] = useState("full-time");
   const [document, setDocument] = useState("doc");
+  const [uid, setUid] = useState("doc");
   console.log(title);
   console.log(document);
+  console.log(uid);
   return (
     <>
     <Router>
@@ -33,11 +35,11 @@ function App() {
           <Route path='/' exact element={<HomePage setTitle = {setTitle}/>}/>
           <Route path='/career' exact element={<CareerPage />} />
           <Route path='/jobdes' exact element={<JobDesPage title={title}/>} />
-          <Route path='/form' exact element={<FormPage title={title} setDocument = {setDocument}/>} />
+          <Route path='/form' exact element={<FormPage title={title} setDocument = {setDocument} uid = {uid}/>} />
           <Route path='/table' exact element={<TablePage />} />
           <Route path='/login' exact element={<LoginPage />} />
           <Route path='/user' exact element={<UserProfilePage />} />
-          <Route path='/pre' exact element={<PreApplyPage />} />
+          <Route path='/pre' exact element={<PreApplyPage setUid = {setUid} />} />
           <Route path='/apply' exact element={<ApplySuccessPage document = {document}/>} />
         </Routes>
         <Footer/>

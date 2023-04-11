@@ -1,8 +1,8 @@
 import React from 'react'
 import {ApplyAs} from '../pre-apply/ApplyAs';
 
-export const PreApplyPage = () => {
+export const PreApplyPage = ({setUid}) => {
   return (
-   <ApplyAs/>
+   <ApplyAs setUid = {setUid}/>
   )
 }

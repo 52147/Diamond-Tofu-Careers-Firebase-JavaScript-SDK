@@ -13,8 +13,9 @@ import {
   useDbData,
   useDbUpdate,
 } from "../../database/firebase";
-export const FormComponent = ({ setTitle, setDocument }) => {
+export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   console.log(setTitle);
+  console.log(setUid);
   let [firstN, setUsername] = useState("");
   let [lastN, setlastname] = useState("");
   let [email, setEmail] = useState("");
@@ -72,6 +73,7 @@ export const FormComponent = ({ setTitle, setDocument }) => {
       visa: visa,
       link: link,
       resume: resume,
+      uid: setUid
     };
 
     try {
