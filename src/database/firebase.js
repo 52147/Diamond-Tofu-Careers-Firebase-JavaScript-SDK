@@ -48,8 +48,8 @@ export const signInWithGooglePopup = async (setUid, navigate) => {
 
     if (matchingDocument) {
       console.log("Email is authorized.");
-      setUid(uid);
-      navigate("/table");
+      // setUid(uid);
+      // navigate("/table");
     } else {
       console.log("Email is not authorized. Checking UID...");
       const resumesCollection = collection(db, "resumes");

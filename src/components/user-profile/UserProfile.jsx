@@ -10,6 +10,10 @@ import {
 import { JobApplicationStatus } from "./JobApplicationStatus";
 import { UserProfileForm } from "./UserProfileForm";
 export const UserProfile = ({ setUid }) => {
+
+  const uid = localStorage.getItem("uid");
+
+console.log(uid);
   console.log(setUid);
   const [user, setUser] = useState({
     name: "",

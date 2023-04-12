@@ -7,10 +7,15 @@ export const Login = ({ setUid }) => {
   const [show, setShow] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+console.log(isLoggedIn);
+const uid = localStorage.getItem("uid");
 
-  useEffect(() => {
-    signInWithGooglePopup(setUid, setAuthenticated);
-  }, [setUid]);
+console.log(uid);
+
+  // useEffect(() => {
+  //   signInWithGooglePopup(setUid);
+  // }, [setUid]);
 
   const handleModalClose = () => setShow(false);
 
@@ -53,7 +58,7 @@ export const Login = ({ setUid }) => {
             </Modal>
           </div>
   
-          {authenticated ? (
+          {isLoggedIn ? (
             <div className="mt-4">
               <button className="buttonClass inputClass" onClick={handleSignOut}>
                 Sign Out
