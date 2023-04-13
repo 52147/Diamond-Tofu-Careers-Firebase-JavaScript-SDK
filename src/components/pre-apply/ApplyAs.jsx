@@ -13,11 +13,16 @@ const navigate = useNavigate();
 
   const handleSignInClick = async() => {
     // Handle sign in process
-    const response = await signInWithGooglePopup();
-    const uid = response.user.uid;
-    console.log(uid);
-    setUid(uid)
-    navigate("/form");
+    const role = await signInWithGooglePopup();
+    // const uid = response.user.uid;
+    // console.log(uid);
+    // setUid(uid)
+   
+    if (role == 1) {
+      navigate("/table");
+    } else if (role == 2) {
+      navigate("/form");
+    }
 
   };
 
