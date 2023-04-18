@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path='/' exact element={<HomePage setTitle = {setTitle}/>}/>
           <Route path='/career' exact element={<CareerPage />} />
-          <Route path='/jobdes' exact element={<JobDesPage title={title}/>} />
+          <Route path='/jobdes' exact element={<JobDesPage setTitle = {setTitle} title={title}/>} />
           <Route path='/form' exact element={<FormPage title={title} setDocument = {setDocument} uid = {uid}/>} />
           <Route path='/table' exact element={<TablePage />} />
           <Route path='/login' exact element={<LoginPage setUid = {setUid}/>} />

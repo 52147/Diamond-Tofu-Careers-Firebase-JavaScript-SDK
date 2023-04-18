@@ -1,15 +1,14 @@
 const admin = require("firebase-admin");
-
 // Initialize Firebase Admin SDK
-const serviceAccount = require("./path/to/serviceAccountKey.json");
+const serviceAccount = require("../../serviceAccountKey.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://your-project-id.firebaseio.com",
+  databaseURL: "https://diamond-tofu-career-default-rtdb.firebaseio.com",
 });
 
 const db = admin.firestore();
 
-app.get("/", async (req, res) => {
+app.get("/resumes", async (req, res) => {
   try {
     const resumesRef = db.collection("resumes");
     const snapshot = await resumesRef.get();
@@ -20,11 +19,16 @@ app.get("/", async (req, res) => {
       data.push({ ...docData, id: doc.id });
     });
 
-    res.render("index", { data });
+    // res.render("index", { data });
   } catch (error) {
     console.error(error);
     res.render("error");
   }
+
+  return res.json(data);
+
+
+
 });
 
 app.post("/update", async (req, res) => {

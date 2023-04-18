@@ -2,17 +2,19 @@ const express = require('express');
 const admin = require('firebase-admin');
 
 // Initialize Firebase Admin SDK
-const serviceAccount = require('./path/to/serviceAccountKey.json');
+const serviceAccount = require('../serviceAccountKey.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://your-project-name.firebaseio.com'
+  databaseURL: 'https://diamond-tofu-career-default-rtdb.firebaseio.com'
 });
 
 // Create Express app
 const app = express();
 
 // Handle API requests
-app.get('/api/posts', (req, res) => {
+app.get('/', (req, res) => {
+  res.status(200).send("Success");
+
   // handle API request to fetch posts from Firestore
 });
 
