@@ -128,7 +128,7 @@
 //                       //   // handleStatus(item.id, e.target.value)
 
 //                       // }
-                        
+
 //                       //   // handleStatus(item.id, e.target.value)
 //                       // }
 //                       as="select"
@@ -163,6 +163,8 @@
 //   );
 // };
 import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import { TableRow } from "./TableRow";
 
 export const TableComponent = () => {
   const [data, setData] = useState([]);
@@ -170,7 +172,7 @@ export const TableComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/resumes");
+        const response = await fetch("http://localhost:3000/resumes");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -181,6 +183,7 @@ export const TableComponent = () => {
     fetchData();
   }, []);
 
+  
   return (
     <>
       <div className="container">
@@ -206,29 +209,7 @@ export const TableComponent = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.first_name}</td>
-                  <td>{item.last_name}</td>
-                  <td>{item.location}</td>
-                  <td>
-                    <a href={`mailto:${item.email}`}>{item.email}</a>
-                  </td>
-                  <td>{item.education}</td>
-                  <td>{item.accomplish}</td>
-                  <td>{item.visa}</td>
-                  <td>{item.website}</td>
-                  <td>
-                    <a href={item.resume} target="_blank" rel="noreferrer">
-                      View Resume
-                    </a>
-                  </td>
-                  <td>{item.status}</td>
-                  <td>
-                    <button className="btn btn-primary">Send Email</button>
-                  </td>
-                </tr>
-              ))}
+            <TableRow key={data.id} items={data} />
             </tbody>
           </table>
         </div>
