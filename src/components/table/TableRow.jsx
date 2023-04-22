@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import { Button, Table, Form, Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  onSnapshot,
-} from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 export const TableRow = ({ item }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -53,7 +46,6 @@ export const TableRow = ({ item }) => {
       message: "Your application be reviewed.",
       // Add any other template parameters needed for the email
     };
-
     emailjs
       .send(serviceId, templateId, templateParams, "34k_iE5a6LQj_hmU8")
       .then((result) => {

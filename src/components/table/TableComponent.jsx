@@ -6,10 +6,7 @@ import {
   where,
   onSnapshot,
 } from "firebase/firestore";
-import { Button, Table, Form, Container, Row, Col } from "react-bootstrap";
 import { TableRow } from "./TableRow";
-// import { FaEnvelope } from 'react-icons/fa';
-import { doc, setDoc, updateDoc } from "firebase/firestore";
 
 export const TableComponent = () => {
   const [data, setData] = useState([]);
@@ -72,7 +69,6 @@ export const TableComponent = () => {
         <div className="pt-3.5 text-center text-violet-700">
           <h1>Form Data Table</h1>
         </div>
-
         <div className="search-box mb-3">
           <input
             type="text"
@@ -81,7 +77,6 @@ export const TableComponent = () => {
             onChange={handleSearch}
           />
         </div>
-
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
             <thead>
@@ -96,7 +91,6 @@ export const TableComponent = () => {
                 <th>Website Link</th>
                 <th>Resume Link</th>
                 <th>Status</th>
-
                 <th>Action</th>
               </tr>
             </thead>
@@ -104,57 +98,6 @@ export const TableComponent = () => {
               {filteredData.map((item) => (
                 <TableRow key={item.id} item={item} />
               ))}
-              {/* {data.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.first_name}</td>
-                  <td>{item.last_name}</td>
-                  <td>{item.location}</td>
-                  <td>
-                    <a href={`mailto:${item.email}`}>{item.email}</a>
-                  </td>
-                  <td>{item.education}</td>
-                  <td>{item.accomplish}</td>
-                  <td>{item.visa}</td>
-                  <td>{item.resume}</td>
-                  <td>
-                  <Form.Select size="sm"
-                      className="mx-2"
-                      // value={item.status}
-                      // onChange={(e) =>{
-                      //   // console.log(e);
-                      //   // console.log(e.target);
-                      //   // console.log(e.target.value);
-                      //   // console.log(item.id);
-                      //   // handleStatus(item.id, e.target.value)
-
-                      // }
-                        
-                      //   // handleStatus(item.id, e.target.value)
-                      // }
-                      as="select"
-                      value={type}
-                      onChange={e => {
-                        console.log("e.target.value", e.target.value);
-                        setType(e.target.value);
-                      }}
-                    >
-                      <option value="Pending" >Pending</option>
-                      <option value="Reject" >Reject</option>
-                      <option value="Offer" >Offer</option>
-                    </Form.Select>
-                  </td>
-
-                  <td>
-                    <Button
-                      color="primary"
-                      size="sm"
-                      onClick={() => sendEmail(item.email)}
-                    >
-                      Email
-                    </Button>
-                  </td>
-                </tr>
-              ))} */}
             </tbody>
           </table>
         </div>

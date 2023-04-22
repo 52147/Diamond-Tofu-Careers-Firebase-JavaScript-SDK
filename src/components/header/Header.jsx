@@ -1,20 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Container, Navbar, Nav, Button, Modal} from "react-bootstrap";
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 export const Header = () => {
-  // const [sidebar, setSidebar] = useState(false);
-
   const userRole = localStorage.getItem("role");
   console.log(userRole);
   const navigate = useNavigate();
-  const navTable = () =>{
-    navigate("/table");
-  }
-  const navUser = () =>{
-    navigate("/user");
-  }
-  
+
   return (
     <>
       <header>
@@ -64,19 +55,29 @@ export const Header = () => {
                 </Link>
               </li>
               <li>
-              {(userRole == 1 ) && <>
-                            <Link className="text-white underline-hover-effect" to="/table">Management Table</Link>
-                        </>
-                        }
-                        {
-                            userRole == 2 && <><Link className="text-white underline-hover-effect" to = "/user">User Profile</Link>
-                            </>
-                        }
+                {userRole == 1 && (
+                  <>
+                    <Link
+                      className="text-white underline-hover-effect"
+                      to="/table"
+                    >
+                      Management Table
+                    </Link>
+                  </>
+                )}
+                {userRole == 2 && (
+                  <>
+                    <Link
+                      className="text-white underline-hover-effect"
+                      to="/user"
+                    >
+                      User Profile
+                    </Link>
+                  </>
+                )}
               </li>
-              
             </ul>
           </div>
-
           <img className="logo" src="DT logo.png" alt="" />
         </div>
       </header>

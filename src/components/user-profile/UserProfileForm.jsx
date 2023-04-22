@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  getFirestore,
-  doc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  limit,
-} from "firebase/firestore";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
 export const UserProfileForm = ({ user }) => {
   const [resume, setResume] = useState(user.resume);
   const [email, setEmail] = useState(user.email);

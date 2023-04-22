@@ -2,26 +2,16 @@ import React, { useState } from "react";
 import {
   getFirestore,
   collection,
-  query,
-  where,
-  getDocs,
   doc,
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { useAuth } from "../../database/AuthContext";
 import { Button, Modal } from "react-bootstrap";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../database/firebase";
 import { signInWithGooglePopup } from "../../database/firebase";
 
 export const ApplySuccess = ({ setDocument }) => {
-  //   const currentUser = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  //   console.log(currentUser);
-
-  //   const login = useAuth();
 
   const handleSignInWithGoogle = async () => {
     try {
@@ -32,7 +22,7 @@ export const ApplySuccess = ({ setDocument }) => {
       setLoading(true);
 
       const db = getFirestore();
-      const resumesRef = collection(db, "resumes"); 
+      const resumesRef = collection(db, "resumes");
 
       try {
         const docRef = doc(resumesRef, setDocument); // 用doc() 拿到document idsetDocument is the document ID
@@ -57,8 +47,6 @@ export const ApplySuccess = ({ setDocument }) => {
     }
   };
 
-  const handleRegister = async () => {};
-
   return (
     <>
       <div className="jobdes">
@@ -69,7 +57,6 @@ export const ApplySuccess = ({ setDocument }) => {
           <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
         </div>
       </div>
-
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Registration Success</Modal.Title>

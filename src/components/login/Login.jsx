@@ -12,22 +12,7 @@ export const Login = ({ setUid }) => {
 
   console.log(isLoggedIn);
   const uid = localStorage.getItem("uid");
-
   console.log(uid);
-
-  const [user, setUser] = useState(null);
-
-  // auth.auth().onAuthStateChanged((user) => {
-  //   if (user) {
-  //     setUser(user);
-  //   } else {
-  //     setUser(null);
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   signInWithGooglePopup(setUid);
-  // }, [setUid]);
 
   const handleModalClose = () => setShow(false);
   const handleModalClose2 = () => setShow(false);
@@ -41,16 +26,13 @@ export const Login = ({ setUid }) => {
     } else if (role == 2) {
       navigate("/user");
     }
-    
   };
-
   const handleSignOut = async () => {
     await signOut(setAuthenticated);
-    setShowLogout(true)
-    setTimeout(() =>{
+    setShowLogout(true);
+    setTimeout(() => {
       window.location.reload();
     }, "1500");
-    
   };
 
   return (
@@ -58,7 +40,6 @@ export const Login = ({ setUid }) => {
       <div className="jobdes">
         <div className="container">
           <h1 className="font-medium text-center text-violet-700">Login</h1>
-
           <div>
             <button
               className="buttonClass inputClass"
@@ -88,7 +69,6 @@ export const Login = ({ setUid }) => {
         <p>Please sign in.</p>
       }
     </div> */}
-
           {isLoggedIn ? (
             <div className="mt-4">
               <button
@@ -101,20 +81,17 @@ export const Login = ({ setUid }) => {
           ) : null}
         </div>
         <Modal show={showLogout} onHide={handleModalClose2}>
-              <Modal.Header closeButton>
-                <Modal.Title>Invalid Login</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                Logout Successfully.
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={handleModalClose2}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Invalid Login</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Logout Successfully.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleModalClose2}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-      
     </>
   );
 };
