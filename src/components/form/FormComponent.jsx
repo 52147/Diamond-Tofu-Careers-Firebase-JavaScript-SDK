@@ -43,8 +43,8 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       setPosition("Full-Time Project Manager");
     }
   }, [apply]);
-  console.log(position)
-  console.log(apply)
+  console.log(position);
+  console.log(apply);
 
   const navigate = useNavigate();
   const form = useRef();
@@ -209,10 +209,10 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
               >
                 <Form.Label>Education</Form.Label>
                 <Form.Control
-  as="select"
-  value={education}
-  onChange={(event) => setEducation(event.target.value)}
->
+                  as="select"
+                  value={education}
+                  onChange={(event) => setEducation(event.target.value)}
+                >
                   <option value="">Select an option</option>
                   <option value="high-school">High School</option>
                   <option value="Bachlor">Bachlor</option>
