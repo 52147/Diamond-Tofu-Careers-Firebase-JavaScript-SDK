@@ -6,7 +6,6 @@ import { signOut, signInWithGooglePopup } from "../../database/firebase";
 export const Login = ({ setUid }) => {
   const [show, setShow] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-  const [showNotValidUser, setNotValidUser] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -17,7 +16,6 @@ export const Login = ({ setUid }) => {
 
   const handleModalClose = () => setShow(false);
   const handleModalClose2 = () => setShow(false);
-  const handleModalClose3 = () => setShow(false);
 
   const handleGoogleLogin = async () => {
     const role = await signInWithGooglePopup();
@@ -92,17 +90,6 @@ export const Login = ({ setUid }) => {
           <Modal.Body>Logout Successfully.</Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleModalClose2}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-        <Modal show={showNotValidUser} onHide={handleModalClose3}>
-          <Modal.Header closeButton>
-            <Modal.Title>Invalid User.</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Invalid User.</Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleModalClose3}>
               Close
             </Button>
           </Modal.Footer>
