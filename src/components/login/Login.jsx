@@ -24,9 +24,8 @@ export const Login = ({ setUid }) => {
     if (role == 1) {
       navigate("/table");
     } else if (role == 2) {
-      setNotValidUser(true);
       // navigate("/user");
-    }else{
+    } else {
       setShow(true);
     }
   };
