@@ -1,17 +1,17 @@
-import React, { useState, useRef } from "react";
-import Form from "react-bootstrap/Form";
-import { Button, Modal } from "react-bootstrap";
+import React, { useState, useRef, useEffect } from "react";
+import { Form, Button, Modal } from "react-bootstrap";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router";
 import emailjs from "@emailjs/browser";
 import { db } from "../../database/firebase";
 export const FormComponent = ({ setTitle, setDocument, setUid }) => {
+  const MAX_WORD_LIMIT = 300;
   console.log(setTitle);
   console.log(setUid);
   let [firstN, setUsername] = useState("");
   let [lastN, setlastname] = useState("");
   let [email, setEmail] = useState("");
-  let [location, setLocation] = useState("");
+  let [address, setAddress] = useState("");
   let [education, setEducation] = useState("");
   let [accomplish, setAccomplish] = useState("");
   let [visa, setVisa] = useState("");
@@ -25,6 +25,27 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
   const handleClose2 = () => setShowSuccessModal(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
+  const [position, setPosition] = useState("");
+  const apply = localStorage.getItem("apply");
+  console.log(localStorage.getItem("apply"));
+  useEffect(() => {
+    if (apply === "internship-software-engineer") {
+      setPosition("Internship Software Engineer");
+    } else if (apply === "full-time-software-engineer") {
+      setPosition("Full-Time Software Engineer");
+    } else if (apply === "internship-data-scientist") {
+      setPosition("Internship Data Scientist");
+    } else if (apply === "full-time-data-scientist") {
+      setPosition("Full-Time Data Scientist");
+    } else if (apply === "internship-project-manager") {
+      setPosition("Internship Project Manager");
+    } else if (apply === "full-time-project-manager") {
+      setPosition("Full-Time Project Manager");
+    }
+  }, [apply]);
+  console.log(position)
+  console.log(apply)
+
   const navigate = useNavigate();
   const form = useRef();
   async function writeNewPost(e) {
@@ -34,7 +55,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       !firstN ||
       !lastN ||
       !email ||
-      !location ||
+      !address ||
       !education ||
       !accomplish ||
       !visa ||
@@ -51,9 +72,9 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
       id: 1,
       firstN: firstN,
       lastN: lastN,
-      title: "Intern SDE", // PM | full-time ...
+      title: position, // PM | full-time ...
       email: email,
-      location: location,
+      address: address,
       education: education,
       accomplish: accomplish,
       visa: visa,
@@ -65,12 +86,11 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
 
     try {
       const docRef = await addDoc(collection(db, "resumes"), postData);
-
       setShowSuccessModal(true);
-      navigate("/apply");
-
       console.log("Document written with ID: ", docRef.id);
       setDocument(docRef.id);
+      localStorage.removeItem("apply");
+      navigate("/apply");
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -126,7 +146,7 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
         <div className="container">
           <div className="px-9 pt-9 pb-9">
             <div className="text-center text-violet-700">
-              <h1>Full-Time Software Engineer</h1>
+              <h1>{position}</h1>
             </div>
             <br />
             <form action="" ref={form}>
@@ -174,12 +194,12 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Location</Form.Label>
+                <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Location"
-                  value={location}
-                  onChange={(event) => setLocation(event.target.value)}
+                  placeholder="Address"
+                  value={address}
+                  onChange={(event) => setAddress(event.target.value)}
                 />
               </Form.Group>
 
@@ -189,11 +209,16 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
               >
                 <Form.Label>Education</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Education"
-                  value={education}
-                  onChange={(event) => setEducation(event.target.value)}
-                />
+  as="select"
+  value={education}
+  onChange={(event) => setEducation(event.target.value)}
+>
+                  <option value="">Select an option</option>
+                  <option value="high-school">High School</option>
+                  <option value="Bachlor">Bachlor</option>
+                  <option value="Master">Master</option>
+                  <option value="phd">PhD</option>
+                </Form.Control>
               </Form.Group>
 
               <Form.Group
@@ -209,6 +234,9 @@ export const FormComponent = ({ setTitle, setDocument, setUid }) => {
                   value={accomplish}
                   onChange={(event) => setAccomplish(event.target.value)}
                 />
+                <div>{`${
+                  accomplish.split(" ").length
+                } words out of ${MAX_WORD_LIMIT} words used.`}</div>
               </Form.Group>
 
               <Form.Group

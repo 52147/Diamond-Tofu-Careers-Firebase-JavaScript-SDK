@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 export const Jobdes = ({ setTitle }) => {
+  console.log("apply ", localStorage.getItem("apply"));
   console.log(setTitle);
   let jobTitle = "";
   let jobDescription = "";
@@ -399,7 +400,7 @@ export const Jobdes = ({ setTitle }) => {
             <div className="btnpadding btn-block ">
               <Button
                 onClick={() => {
-                  window.location.replace(`/pre`);
+                  window.location.replace(`/form`);
                 }}
               >
                 Apply

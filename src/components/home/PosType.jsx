@@ -59,6 +59,7 @@ export const PosType = ({ setTitle }) => {
                     <Button
                       onClick={() => {
                         setTitle(value.title_full);
+                        localStorage.setItem("apply", value.title_full);
                       }}
                     >
                       Full Time
@@ -68,6 +69,7 @@ export const PosType = ({ setTitle }) => {
                     <Button
                       onClick={() => {
                         setTitle(value.title_intern);
+                        localStorage.setItem("apply", value.title_intern);
                       }}
                     >
                       Intern

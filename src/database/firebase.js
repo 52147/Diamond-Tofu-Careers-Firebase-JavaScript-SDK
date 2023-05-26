@@ -44,6 +44,7 @@ export const signInWithGooglePopup = async (setUid, navigate) => {
     const matchingDocument = documents.find(
       (doc) => doc.data().email === email
     );
+    console.log(matchingDocument);
 
     if (matchingDocument) {
       console.log("Email is authorized.");
@@ -57,6 +58,7 @@ export const signInWithGooglePopup = async (setUid, navigate) => {
       const matchingResume = resumes.find(
         (resume) => resume.data().uid === uid
       );
+      
 
       if (matchingResume) {
         console.log("UID is authorized.");

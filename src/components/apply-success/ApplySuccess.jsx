@@ -51,10 +51,10 @@ export const ApplySuccess = ({ setDocument }) => {
     <>
       <div className="jobdes">
         <div className="container text-center">
-          <h1>Application Submitted Successfully!</h1>
+          <h1 className="text-violet-700">Application Submitted Successfully!</h1>
           <p>Thank you for your submission.</p>
-          Do you still want to register?
-          <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
+          {/* Do you still want to register?
+          <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button> */}
         </div>
       </div>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
